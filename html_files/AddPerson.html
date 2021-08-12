@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../css_files/AddPerson.css">
+    <script type="text/javascript" src="../js_files/AddressBook.js"></script>
+    <script type="text/javascript" src="../js_files/FormValidation.js"></script>
+    <title>Address Book</title>
+</head>
+<body>
+    <header class="header-content header">
+        <div class="logo-content">
+            <img src="../assets/icon/logo.png" alt="logo">
+            <div>
+                <span class="per-text">ADDRESS</span><br>
+                <span class="per-text per-address">BOOK</span>
+            </div>
+        </div>
+    </header>
+    <div class="form-content">
+        <form class="form " action="#" onsubmit="save();">
+            <div class="form-head">
+                PERSON ADDRESS FORM
+            </div>
+            <div class="row-content">
+                <label for="name" class="label text"></label>
+                <input type="text" class="input" id="name" name="name" placeholder="full Name.." required>
+                <error-output for="text" class="text-error"></error-output>
+            </div>
+            <div class="row-content">
+                <label for="address" class="label text"></label>
+                <input type="text" class="input" id="address" name="address" placeholder="Address.." required
+                    style="height: 100px;">
+                <error-output for="text" class="address-error"></error-output>
+            </div>
+            <div class="row-content">
+                <label for="address" class="label text"></label>
+                <div>
+                    <select id="city" name="city">
+                        <option>Select City</option>
+                        <option value="Agra">Agra</option>
+                        <option value="Bangalore">Bangalore</option>
+                        <option value="Chandigarh">Chandigarh</option>
+                        <option value="Chennai">Chennai</option>
+                        <option value="Dehradun">Dehradun</option>
+                        <option value="Hyderabad">Hyderabad</option>
+                        <option value="Jaipur">Jaipur</option>
+                        <option value="Lucknow">Lucknow</option>
+                        <option value="Mangalore">Mangalore</option>
+                        <option value="Mumbai">Mumbai</option>
+                        <option value="Mysore">Mysore</option>
+                        <option value="Noida">Noida</option>
+                        <option value="Pune">Pune</option>
+                        <option value="Ranchi">Ranchi</option>
+                        <option value="Roorkee">Roorkee</option>
+                        <option value="Udaipur">Udaipur</option>
+                    </select>
+                    <select id="state" name="state">
+                        <option>Select State</option>
+                        <option value="Jharkhand">Jharkhand</option>
+                        <option value="Karnataka">Karnataka</option>
+                        <option value="Maharastra">Maharastra</option>
+                        <option value="Punjab">Punjab</option>
+                        <option value="Rajasthan">Rajasthan</option>
+                        <option value="Tamil Nadu">Tamil Nadu</option>
+                        <option value="Telangana">Telangana</option>
+                        <option value="Uttarakhand">Uttarakhand</option>
+                        <option value="Uttar Pradesh">Uttar Pradesh</option>
+                    </select>
+                    <input type="number" class="input-code" id="zipcode" name="zipcode" placeholder="Zip Code.." required>
+                </div>
+            </div>
+            <div class="row-content">
+                <label for="number" class="label text"></label>
+                <input type="text" class="input" id="number" name="number" placeholder="Phone Number..">
+                <error-output for="number" class="number-error"></error-output>
+            </div> 
+            <div class="button-parent">
+                <a href="./AddressBook.html" class="resetButton button cancelButton">Cancel</a>
+                <div class="submit-reset">
+                    <button class="button submitButton" type="submit">Submit</button>
+                    <button type="reset" class="button resetButton">Reset</button>
+                </div>
+            </div>
+        </form>
+    </div>
+</body>
+
+</html>
