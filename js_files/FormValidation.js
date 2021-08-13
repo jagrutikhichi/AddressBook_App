@@ -7,7 +7,7 @@ window.addEventListener('DOMContentLoaded', (event) => {
 function validateName() {
     const name = document.querySelector('#name');
     const textError = document.querySelector('.text-error');
-    name.addEventListener('input', function () {
+    name.addEventListener('input', function() {
         if (name.value.length == 0) {
             textError.textContent = "";
             return;
@@ -25,7 +25,7 @@ function validateName() {
 function validateAddress() {
     const address = document.querySelector('#address');
     const textError = document.querySelector('.address-error');
-    address.addEventListener('input', function () {
+    address.addEventListener('input', function() {
         if (address.value.length == 0) {
             textError.textContent = "";
             return;
@@ -43,7 +43,7 @@ function validateAddress() {
 function validatePhoneNumber() {
     const number = document.querySelector('#number');
     const numbererror = document.querySelector('.number-error');
-    number.addEventListener('input', function () {
+    number.addEventListener('input', function() {
         if (number.value.length == 0) {
             numbererror.textContent = "";
             return;
@@ -79,8 +79,8 @@ const createAddressBook = () => {
         throw e;
     }
     addressBookData.address = getInputValueId('#address');
-    addressBookData.city    = getInputValueId('#city');
-    addressBookData.state   = getInputValueId('#state');
+    addressBookData.city = getInputValueId('#city');
+    addressBookData.state = getInputValueId('#state');
     addressBookData.zipcode = getInputValueId('#zipcode');
     addressBookData.phonenumber = getInputValueId('#number');
     console.log(addressBookData);
@@ -102,16 +102,15 @@ const setTextValue = (id, message) => {
 const createAndUpdateStorage = (data) => {
     let dataList = JSON.parse(localStorage.getItem("AddressBookList"));
 
-    if(dataList != undefined) {
+    if (dataList != undefined) {
         dataList.push(data);
-    }
-    else {
+    } else {
         dataList = [data];
     }
     console.log(dataList);
 
     localStorage.setItem("AddressBookList", JSON.stringify(dataList));
-    alert("data stored with name: "+data.name);
+    alert("data stored with name: " + data.name);
 }
 const resetForm = () => {
     setValue('#name', '');

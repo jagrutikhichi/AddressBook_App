@@ -1,15 +1,15 @@
-class AddressBookData{
+class AddressBookData {
 
     get name() {
         return this._name;
     }
-    set name(name) {    
+    set name(name) {
         console.log(name);
         let pattern = RegExp('^[A-Z]{1}[a-zA-Z]{2,}$');
         if (pattern.test(name))
             this._name = name;
         else
-            throw 'Incorrect Name';   
+            throw 'Incorrect Name';
     }
 
     get address() {
@@ -31,7 +31,7 @@ class AddressBookData{
         this._city = city;
     }
 
-    get state(){
+    get state() {
         return this._state;
     }
     set state(state) {
@@ -56,10 +56,10 @@ class AddressBookData{
         else
             throw 'Incorrect Phone Number';
     }
-    
+
     toString() {
-        return "name="+this.name+" address="+this.address+" city="+this.city+" state="+this.state+
-        " zipcode="+this.zipcode+" phonenumber="+this.phonenumber;
+        return "name=" + this.name + " address=" + this.address + " city=" + this.city + " state=" + this.state +
+            " zipcode=" + this.zipcode + " phonenumber=" + this.phonenumber;
     }
 
-}    
+}

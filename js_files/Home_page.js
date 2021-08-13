@@ -9,10 +9,10 @@ window.addEventListener('DOMContentLoaded', (event) => {
 });
 
 const createInnerHtml = () => {
-    const headerHtml ="<tr><th>Full Name</th> <th>Address</th><th>City</th><th>State</th><th>Zip Code</th><th>Phone Number</th><th>Actions</th></tr>"
+    const headerHtml = "<tr><th>Full Name</th> <th>Address</th><th>City</th><th>State</th><th>Zip Code</th><th>Phone Number</th><th>Actions</th></tr>"
     let innerHtml = `${headerHtml}`;
-    for(let addressData of addressBookList) {
-        innerHtml =`${innerHtml}
+    for (let addressData of addressBookList) {
+        innerHtml = `${innerHtml}
     
         <tr>
         <td>${addressData._name}</td>
@@ -26,13 +26,13 @@ const createInnerHtml = () => {
             <img id="${addressData._id}" src="../assets/icon/create-black-18dp.svg" alt="Edit" onclick="update(this)">
         </td>
     </tr>`;
-    document.querySelector('#display').innerHTML=innerHtml;
-    }    
+        document.querySelector('#display').innerHTML = innerHtml;
+    }
 }
 
-const getDataFromLocalStorage= () => {
-    return localStorage.getItem('AddressBookList')? 
-           JSON.parse(localStorage.getItem('AddressBookList')) : [];
+const getDataFromLocalStorage = () => {
+    return localStorage.getItem('AddressBookList') ?
+        JSON.parse(localStorage.getItem('AddressBookList')) : [];
 }
 
 const remove = (data) => {
