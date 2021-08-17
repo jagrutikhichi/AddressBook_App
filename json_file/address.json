@@ -1,0 +1,39 @@
+{
+    "address": [{
+            "id": 1,
+            "_name": "Aakash Singh",
+            "_address": "South Hall",
+            "_city": "Chandigarh",
+            "_state": "Punjab",
+            "_zipcode": "248140",
+            "_phonenumber": "+91 9801234567"
+        },
+        {
+            "id": 2,
+            "_name": "Pragya Rathore",
+            "_address": "New Villa",
+            "_city": "Roorkee",
+            "_state": "Uttarakhand",
+            "_zipcode": "345140",
+            "_phonenumber": "+12 9012045678"
+        },
+        {
+            "id": 3,
+            "_name": "Robert ",
+            "_address": "Modern Cross City",
+            "_city": "Bangalore",
+            "_state": "Karnataka",
+            "_zipcode": "345140",
+            "_phonenumber": "+91 9012045678"
+        },
+        {
+            "_name": "Jagruti",
+            "_address": "Ghatkopar West",
+            "_city": "Mumbai",
+            "_state": "Maharastra",
+            "_zipcode": "454545",
+            "_phonenumber": "+91 8451829110",
+            "id": 4
+        }
+    ]
+}
