@@ -1,7 +1,6 @@
 let addressBookList;
 
 window.addEventListener('DOMContentLoaded', (event) => {
-    console.log("Called Event");
     addressBookList = getDataFromLocalStorage();
     document.querySelector('.per-count').textContent = addressBookList.length;
     createInnerHtml();
@@ -37,11 +36,11 @@ const getDataFromLocalStorage = () => {
 
 const remove = (data) => {
 
-    let addBookData = addressBookList.find(personData => personData._id == data._id);
+    let addBookData = addressBookList.find(personData => personData._id == data.id);
     if (!addBookData) {
         return;
     }
-    const index = addressBookList.map(personData => personData._id).indexOf(addBookData._id);
+    const index = addressBookList.map(personData => personData._id).indexOf(addBookData.id);
     addressBookList.splice(index, 1);
     localStorage.setItem('AddressBookList', JSON.stringify(addressBookList));
     document.querySelector('.per-count').textContent = addressBookList.length;
@@ -49,10 +48,11 @@ const remove = (data) => {
 }
 
 const update = (data) => {
-    let addBookData = addressBookListt.find(personData => personData._id == data._id);
+    console.log(data.id);
+    let addBookData = addressBookList.find(personData => personData._id == data.id);
     if (!addBookData) {
         return;
     }
-    localStorage.setItem('edit-emp', JSON.stringify(addBookData));
+    localStorage.setItem('edit-person', JSON.stringify(addBookData));
     window.location.replace(site_properties.add_employee_page);
 }

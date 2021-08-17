@@ -1,29 +1,30 @@
-html{
+html {
     margin: 0;
     height: 100%;
     font-family: Roboto;
-
 }
-.header{
+
+.header {
     padding: 15px 0px;
     background-color: #ffffff;
 }
-.header-content{
+
+.header-content {
     flex-direction: row;
     align-items: center;
     display: flex;
     border: 0px solid green;
     justify-content: center;
-
 }
 
-.sub-main-content{
+.sub-main-content {
     justify-content: space-between;
     width: 80%;
     margin: 0 auto;
     padding-bottom: 25px;
 }
-.logo-content{
+
+.logo-content {
     display: flex;
     flex-direction: row;
     align-items: center;
@@ -32,19 +33,19 @@ html{
     cursor: pointer;
 }
 
-.logo-content img{
+.logo-content img {
     border: solid 0px #42515f;
 }
 
-.per-text{
+.per-text {
     font: normal normal bold 20px/25px Montserrat;
-    font-family: "Montserrat",sans-serif ;
+    font-family: "Montserrat", sans-serif;
     letter-spacing: 0px;
     color: rgb(0, 174, 255);
     text-transform: capitalize;
 }
 
-.per-address{
+.per-address {
     color: #42515f;
 }
 
@@ -54,7 +55,8 @@ html{
     color: #42515f;
     opacity: 1;
 }
-.per-count{
+
+.per-count {
     background-color: rgb(0, 174, 255);
     color: #ffffff;
     border-radius: 50%;
@@ -62,23 +64,22 @@ html{
     width: 40px;
     text-align: center;
     display: inline-block;
-
 }
 
-*{
+* {
     box-sizing: border-box;
 }
 
 .main-content {
     display: flex;
     flex-direction: column;
-    min-height:  calc(100vh - 80px);
+    min-height: calc(100vh - 80px);
     background-color: #f7f7f7;
     padding: 30px 0px 10px;
     box-sizing: border-box;
 }
 
-.add-button{
+.add-button {
     font: normal normal normal 22px/29px Roboto;
     letter-spacing: 0px;
     color: #ffffff;
@@ -92,11 +93,11 @@ html{
     text-align: center;
     text-decoration: none;
 }
-.table-main{
+
+.table-main {
     width: 80%;
     margin: 0 auto;
     overflow: auto;
-
 }
 
 .table {
@@ -106,7 +107,8 @@ html{
     min-width: 800px;
 }
 
-td,th {
+td,
+th {
     text-align: left;
     padding: 5px 8px;
 }
@@ -135,15 +137,15 @@ td {
     opacity: 1;
 }
 
-td:first-child{
+td:first-child {
     display: flex;
     align-items: center;
 }
 
-td img:first-child{
+td img:first-child {
     margin-right: 10px;
 }
 
-td img{
+td img {
     cursor: pointer;
 }

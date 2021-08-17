@@ -8,6 +8,8 @@
     <link rel="stylesheet" href="../css_files/AddPerson.css">
     <script type="text/javascript" src="../js_files/AddressBook.js"></script>
     <script type="text/javascript" src="../js_files/FormValidation.js"></script>
+    <script type="text/javascript" src="../js_files/Home_page.js"></script>
+    <script type="text/javascript" src="../js_files/site_properties.js"></script>
     <title>Address Book</title>
 </head>
 
@@ -22,9 +24,12 @@
         </div>
     </header>
     <div class="form-content">
-        <form class="form " action="#" onsubmit="save();">
+        <form class="form " action="#" onsubmit="save(event); " onreset="resetForm(event)">
             <div class="form-head">
-                PERSON ADDRESS FORM
+                <div class="form-head-text">PERSON ADDRESS FORM</div>
+                <div class="cancel-img">
+                    <a href="../html_files/AddressBook.html"><img src="../assets/icon/cancel.jpeg" alt="back"></a>
+                </div>
             </div>
             <div class="row-content">
                 <label for="name" class="label text"></label>
@@ -79,9 +84,8 @@
                 <error-output for="number" class="number-error"></error-output>
             </div>
             <div class="button-parent">
-                <a href="./AddressBook.html" class="resetButton button cancelButton">Cancel</a>
-                <div class="submit-reset">
-                    <button class="button submitButton" type="submit">Submit</button>
+                <div class="add-reset">
+                    <button class="button addButton" type="submit">Add</button>
                     <button type="reset" class="button resetButton">Reset</button>
                 </div>
             </div>
