@@ -1,11 +1,38 @@
 let addressBookList;
 
 window.addEventListener('DOMContentLoaded', (event) => {
-    addressBookList = getDataFromLocalStorage();
+    if (site_properties.use_local_storage.match("true")) {
+        addressBookList = getDataFromLocalStorage();
+    } else
+        getBookDataFromServer();
+});
+
+function processAddressBookDataResponse() {
+
     document.querySelector('.per-count').textContent = addressBookList.length;
     createInnerHtml();
     localStorage.removeItem("edit-person");
-});
+}
+
+const getDataFromLocalStorage = () => {
+    addressBookList = localStorage.getItem('AddressBookList') ?
+        JSON.parse(localStorage.getItem('AddressBookList')) : [];
+    processAddressBookDataResponse();
+}
+
+const getBookDataFromServer = () => {
+    makeServiceCall("GET", site_properties.server_url, true)
+        .then(response => {
+            addressBookList = JSON.parse(response);
+            processAddressBookDataResponse();
+        })
+        .catch(error => {
+            console.log("Get Error Status : " + JSON.stringify(error));
+            addressBookList = [];
+            processAddressBookDataResponse();
+        })
+}
+
 
 const createInnerHtml = () => {
     const headerHtml = "<tr><th>Full Name</th> <th>Address</th><th>City</th><th>State</th><th>Zip Code</th><th>Phone Number</th><th>Actions</th></tr>"
@@ -21,26 +48,22 @@ const createInnerHtml = () => {
         <td>${addressData._zipcode}</td>
         <td>${addressData._phonenumber}</td>
         <td>
-            <img id="${addressData._id}" src="../assets/icon/delete-black-18dp.svg" alt="Delete" onclick="remove(this)">
-            <img id="${addressData._id}" src="../assets/icon/create-black-18dp.svg" alt="Edit" onclick="update(this)">
+            <img id="${addressData.id}" src="../assets/icon/delete-black-18dp.svg" alt="Delete" onclick="remove(this)">
+            <img id="${addressData.id}" src="../assets/icon/create-black-18dp.svg" alt="Edit" onclick="update(this)">
         </td>
     </tr>`;
         document.querySelector('#display').innerHTML = innerHtml;
     }
 }
 
-const getDataFromLocalStorage = () => {
-    return localStorage.getItem('AddressBookList') ?
-        JSON.parse(localStorage.getItem('AddressBookList')) : [];
-}
 
 const remove = (data) => {
 
-    let addBookData = addressBookList.find(personData => personData._id == data.id);
+    let addBookData = addressBookList.find(personData => personData.id == data.id);
     if (!addBookData) {
         return;
     }
-    const index = addressBookList.map(personData => personData._id).indexOf(addBookData.id);
+    const index = addressBookList.map(personData => personData.id).indexOf(addBookData.id);
     addressBookList.splice(index, 1);
     localStorage.setItem('AddressBookList', JSON.stringify(addressBookList));
     document.querySelector('.per-count').textContent = addressBookList.length;
@@ -49,7 +72,7 @@ const remove = (data) => {
 
 const update = (data) => {
     console.log(data.id);
-    let addBookData = addressBookList.find(personData => personData._id == data.id);
+    let addBookData = addressBookList.find(personData => personData.id == data.id);
     if (!addBookData) {
         return;
     }

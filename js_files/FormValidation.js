@@ -17,7 +17,7 @@ function validateName() {
             return;
         }
         try {
-            (new AddressBookData()).name = name.value;
+            checkName(name.value);
             textError.textContent = "";
         } catch (e) {
             console.log(e);
@@ -35,7 +35,7 @@ function validateAddress() {
             return;
         }
         try {
-            (new AddressBookData()).address = address.value;
+            checkAddress(address.value);
             textError.textContent = "";
         } catch (e) {
             console.log(e);
@@ -53,7 +53,7 @@ function validatePhoneNumber() {
             return;
         }
         try {
-            (new AddressBookData()).phonenumber = number.value;
+            checkPhonenumber(number.value);
             numbererror.textContent = "";
         } catch (e) {
             console.log(e);
@@ -66,10 +66,14 @@ const save = (event) => {
     event.preventDefault();
     event.stopPropagation();
     try {
-        let personData = setAddressBookObject();
-        createAndUpdateStorage(personData);
-        resetForm();
-        window.location.replace(site_properties.home_page)
+        setAddressBookObject();
+        if (site_properties.use_local_storage.match("true")) {
+            createAndUpdateStorage();
+            alert("Data Stored With Name " + addressBookObject._name);
+            resetForm();
+            window.location.replace(site_properties.home_page)
+        } else
+            createOrUpdatePersonInJsonServer();
     } catch (e) {
         console.log(e);
         return;
@@ -77,22 +81,37 @@ const save = (event) => {
 }
 
 const setAddressBookObject = () => {
-    let addressBookData = new AddressBookData();
-    try {
-        alert(getInputValueId('#name'))
-        addressBookData.name = getInputValueId('#name');
-    } catch (e) {
-        console.log(e)
-        setTextValue('.text-error', e);
-        throw e;
+    if (!isUpdate && site_properties.use_local_storage.match("true")) {
+        addressBookObject.id = createNewPersonId();
     }
-    addressBookData.address = getInputValueId('#address');
-    addressBookData.city = getInputValueId('#city');
-    addressBookData.state = getInputValueId('#state');
-    addressBookData.zipcode = getInputValueId('#zipcode');
-    addressBookData.phonenumber = getInputValueId('#number');
-    addressBookData.id = addressBookObject._id;
-    return addressBookData;
+    addressBookObject._name = getInputValueId('#name');
+    addressBookObject._address = getInputValueId('#address');
+    addressBookObject._city = getInputValueId('#city');
+    addressBookObject._state = getInputValueId('#state');
+    addressBookObject._zipcode = getInputValueId('#zipcode');
+    addressBookObject._phonenumber = getInputValueId('#number');
+    return addressBookObject;
+}
+
+function createOrUpdatePersonInJsonServer() {
+    let url = site_properties.server_url;
+    let methodCall = "POST";
+    let message = "Data Store with name ";
+    if (isUpdate) {
+        methodCall = "PUT";
+        url = url + addressBookObject.id.toString();
+        message = "Data Updated with name ";
+    }
+    makeServiceCall(methodCall, url, true, addressBookObject)
+        .then(response => {
+            alert(message + addressBookObject._name)
+            resetForm();
+            window.location.replace(site_properties.home_page);
+        })
+        .catch(error => {
+            console.log("inside error")
+            throw error
+        });
 }
 
 const getInputValueId = (id) => {
@@ -113,22 +132,22 @@ const createNewPersonId = () => {
     return perId;
 }
 
-const createAndUpdateStorage = (data) => {
+const createAndUpdateStorage = () => {
     let dataList = JSON.parse(localStorage.getItem("AddressBookList"));
 
     if (dataList) {
-        let existingPerData = dataList.find(personData => personData._id == data.id);
+        let existingPerData = dataList.find(personData => personData.id == addressBookObject.id);
         if (!existingPerData) {
             data._id = createNewPersonId();
-            dataList.push(data);
+            dataList.push(addressBookObject);
         } else {
-            const index = dataList.map(personData => personData._id).indexOf(data.id);
-            dataList.splice(index, 1, data);
+            const index = dataList.map(personData => personData.id).indexOf(addressBookObject.id);
+            dataList.splice(index, 1, addressBookObject);
             console.log(dataList)
         }
     } else {
-        data._id = createNewPersonId();
-        dataList = [data]
+        //data._id = createNewPersonId();
+        dataList = [addressBookObject]
     }
     console.log(dataList);
 
