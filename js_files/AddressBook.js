@@ -1,5 +1,11 @@
 class AddressBookData {
 
+    id;
+
+    get id() {
+        return this._id;
+    }
+
     get name() {
         return this._name;
     }
@@ -50,7 +56,7 @@ class AddressBookData {
     }
     set phonenumber(phonenumber) {
         console.log(phonenumber)
-        let numberpattern = RegExp('^[+][0-9]{2,}[1-9]{1}[0-9]{9}$');
+        let numberpattern = RegExp('[+][0-9]{1,}\\s[1-9]{1}[0-9]{9}$');
         if (numberpattern.test(phonenumber))
             this._phonenumber = phonenumber;
         else
@@ -58,7 +64,7 @@ class AddressBookData {
     }
 
     toString() {
-        return "name=" + this.name + " address=" + this.address + " city=" + this.city + " state=" + this.state +
+        return "id=" + this.id + "name=" + this.name + " address=" + this.address + " city=" + this.city + " state=" + this.state +
             " zipcode=" + this.zipcode + " phonenumber=" + this.phonenumber;
     }
 
